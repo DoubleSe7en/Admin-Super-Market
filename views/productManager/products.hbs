@@ -1,0 +1,67 @@
+<!-- main content start-->
+<div id="page-wrapper">
+    <div class="main-page">
+        <h2 class="title1">Quản lý sản phẩm
+            <a href="/productManager/addProduct">
+                <img class="header-right " src="../images/iconPlus.png" alt=" " class="img-responsive">
+            </a>
+        </h2>
+
+        <div class="elements">
+            <!--photoday-section-->
+            <div class="wthree-crd widgettable">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="agileinfo-cdr">
+                            <hr class="widget-separator">
+                            <div class="widget-body">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Sản phẩm</th>
+                                            <th>Tên giản phẩm</th>
+                                            <th>Loại sản phẩm</th>
+                                            <th>Giá (đ)</th>
+                                            <th>Giảm giá (đ)</th>
+                                            <th>Màu sắc</th>
+                                            <th>Kích thước</th>
+                                            <th>Đánh giá (sao)</th>
+                                            <th>Thông tin</th>
+                                            <th>Số lượng tồn</th>
+                                        </tr>
+                                    </thead>
+                                    {{#each Product}}
+                                    <tbody>
+                                        <tr>
+                                            <td class="invert-image">
+                                                <a href="/productManager/products/{{this._id}}">
+                                                    <img src="{{this.imgSrc}}" alt=" " class="img-responsive">
+                                                </a>
+                                            </td>
+                                            <td class="set-left">{{this.name}}</td>
+                                            <td class="set-left">{{this.category}}</td>
+                                            <td>{{this.price}}</td>
+                                            <td>{{this.sale}}</td>
+                                            <td>{{this.color}}</td>
+                                            <td>{{this.size}}</td>
+                                            <td>{{this.rate}}</td>
+                                            <td>{{this.info}}</td>
+                                            <td>{{this.count}}</td>
+                                            <td>
+                                                <form action="/delete_product/{{this._id}}" method="POST">
+                                                    <button type="submit" data-toggle="tooltip" title="Trash"
+                                                        class="pd-setting-ed"><i class="fa fa-trash-o"
+                                                            aria-hidden="true"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    {{/each}}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

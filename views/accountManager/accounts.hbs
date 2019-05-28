@@ -1,0 +1,47 @@
+<!-- main content start-->
+		<div id="page-wrapper">
+			<div class="main-page">
+				<h2 class="title1">Quản lý tài khoản</h2>
+				<div class="elements">
+					<!--photoday-section-->	
+                    	<div class="wthree-crd widgettable">
+                            <div class="card">
+                                <div class="card-body">
+							<div class="agileinfo-cdr">
+                                <hr class="widget-separator">
+                                        <div class="widget-body">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Họ tên</th>
+                                                        <th>Ngày sinh</th>
+                                                        <th>Số điện thoại</th>
+                                                        <th>Email</th>
+                                                        <th>Tên đăng nhập</th>
+                                                        <th>Ngày tạo</th>
+														<th>Quyền hạn</th>
+                                                    </tr>
+                                                </thead>
+                                                {{#each Account}}
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{this.name}}</td>
+                                                        <td>{{this.birthDay}}</td>
+                                                        <td>{{this.phoneNumber}}</td>
+                                                        <td>{{this.email}}</td>
+                                                        <td class="set-left">
+                                                            <a href="/accountManager/accounts/{{this._id}}">{{this.username}}</a>
+                                                        </td>
+                                                        <td>{{this.dateCreate}}</td>
+														<td>{{this.power}}</td>
+                                                    </tr>
+                                                </tbody>
+                                                {{/each}}
+                                            </table>    
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+		</div>
+	</div>
