@@ -15,7 +15,7 @@ var accountListRouter = require('./routes/accounts');
 var app = express();
 
 
-// connect to mongodb
+// connect to mongodb atlas
 var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
