@@ -14,9 +14,9 @@ var productDeleteRouter = require('./routes/product_delete');
 var accountListRouter = require('./routes/accounts');
 var app = express();
 
-
+/*
 // connect to mongodb
-var mongoose = require('mongoose');
+var mongoose = require('mongoose');  
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/local').then(
@@ -27,6 +27,19 @@ mongoose.connect('mongodb://localhost/local').then(
     console.log("Connect data failed...");
   }
 );
+*/
+var mongoose = require('mongoose');
+mongoose.Promise = Promise;
+
+const run = async () => {
+  await mongoose.connect('mongodb+srv://nguyencuong1827:cuongkhtn1997@cluster0-5gcvu.mongodb.net/Super-Market', {
+    useNewUrlParser: true,
+    autoReconnect: true,
+    reconnectTries: 1000000,
+    reconnectInterval: 3000
+  })
+}
+run().catch(error => console.error(error))
 
 
 
