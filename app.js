@@ -15,8 +15,8 @@ var accountListRouter = require('./routes/accounts');
 var app = express();
 
 
-// connect to mongodb
-var mongoose = require('mongoose');  
+// connect to mongodb atlas
+var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/local').then(
@@ -31,7 +31,7 @@ mongoose.connect('mongodb://localhost/local').then(
 
 
 
-// view engine setup
+// view engine setup ""
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
