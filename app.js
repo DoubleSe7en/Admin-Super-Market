@@ -3,32 +3,57 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const flash = require('connect-flash');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+const hbs = require('hbs');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var productListRouter = require('./routes/products');
-var productAddRouter = require('./routes/product_add');
-var productEditRouter = require('./routes/product_edit');
-var productDeleteRouter = require('./routes/product_delete');
+var productRouter = require('./routes/products');
+var accountRouter = require('./routes/accounts');
+var adminRouter = require('./routes/admin');
+const apiAdminRouter = require('./routes/api/adminAPI');
+require('./config/passport')(passport);
 
-var accountListRouter = require('./routes/accounts');
 var app = express();
 
 
 // connect to mongodb atlas
 var mongoose = require('mongoose');
+mongoose.Promise = Promise;
+const option = {
+  useNewUrlParser: true,
+  autoReconnect: true,
+  reconnectTries: 1000000,
+  reconnectInterval: 3000
+};
+const run = async () => {
+  await mongoose.connect('mongodb+srv://nguyencuong1827:cuongkhtn1997@cluster0-5gcvu.mongodb.net/Super-Market', option);
+}
+run().catch(error => console.error(error));
 
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/local').then(
-  ()=>{
-    console.log("Connect data successfully");
-  },
-  err=>{
-    console.log("Connect data failed...");
+
+
+var blocks = {};
+
+hbs.registerHelper('extend', function(name, context) {
+  var block = blocks[name];
+  if (!block) {
+    block = blocks[name] = [];
   }
-);
 
+  block.push(context.fn(this)); // for older versions of handlebars, use block.push(context(this));
+});
 
+hbs.registerHelper('block', function(name) {
+  var val = (blocks[name] || []).join('\n');
+
+  // clear the block
+  blocks[name] = [];
+  return val;
+});
 
 
 // view engine setup """"
@@ -41,15 +66,29 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+// Body Parser Middleware
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
+
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/products', productRouter);
+app.use('/accounts', accountRouter);
+app.use('/admin', adminRouter);
+app.use('/api/adminAPI', apiAdminRouter);
 
-app.use('/productManager', productListRouter);
-app.use('/', productAddRouter);
-app.use('/', productEditRouter);
-app.use('/', productDeleteRouter);
-
-app.use('/accountManager', accountListRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

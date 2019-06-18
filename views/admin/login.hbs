@@ -1,0 +1,36 @@
+<!-- main content start-->
+<div id="page-wrapper">
+	<div class="main-page login-page ">
+		<h2 class="title1">Đăng nhập</h2>
+		<div class="widget-shadow">
+			<div class="login-body">
+				{{#if success}}
+					<div class="alert alert-success">{{success}}</div>
+				{{/if}}
+				{{#if error}}
+					<div class="alert alert-danger">{{error}}</div>
+				{{/if}}
+				<form action="/admin/login" method="post">
+					<input id="username" type="text" name="username" class="user" placeholder="Tài khoản" required="">
+					<input id="password" type="password" name="password" class="lock" placeholder="Mật khẩu" required="">
+					<div class="forgot-grid">
+						<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Nhớ mật
+							khẩu</label>
+						<div class="forgot">
+							<a href="/admin/forgotPassword">Quên mật khẩu?</a>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<input type="submit" name="Sign In" value="Đăng nhập">
+					<div class="registration">
+						Bạn chưa có tài khoản?
+						<a class="" href="/admin/register">
+							Đăng ký
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</div>
+</div>

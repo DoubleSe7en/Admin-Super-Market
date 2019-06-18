@@ -2,7 +2,7 @@
 <div id="page-wrapper">
     <div class="main-page">
         <h2 class="title1">Quản lý sản phẩm
-            <a href="/productManager/addProduct">
+            <a href="/products/addProduct">
                 <img class="header-right " src="../images/iconPlus.png" alt=" " class="img-responsive">
             </a>
         </h2>
@@ -34,7 +34,7 @@
                                     <tbody>
                                         <tr>
                                             <td class="invert-image">
-                                                <a href="/productManager/products/{{this._id}}">
+                                                <a href="/products/{{this._id}}">
                                                     <img src="{{this.imgSrc}}" alt=" " class="img-responsive">
                                                 </a>
                                             </td>
@@ -48,7 +48,7 @@
                                             <td>{{this.info}}</td>
                                             <td>{{this.count}}</td>
                                             <td>
-                                                <form action="/delete_product/{{this._id}}" method="POST">
+                                                <form action="/products/delete_product/{{this._id}}" method="POST">
                                                     <button type="submit" data-toggle="tooltip" title="Trash"
                                                         class="pd-setting-ed"><i class="fa fa-trash-o"
                                                             aria-hidden="true"></i></button>

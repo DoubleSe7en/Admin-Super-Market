@@ -13,7 +13,7 @@ html, body{
 	font-family: 'PT Sans', sans-serif;
     font-size: 100%;
   	overflow-x: hidden;
-	background: #fff;
+	background: #f1f1f1;
 }
 body a{
 	transition: 0.5s all ease;
@@ -1196,6 +1196,7 @@ h2.title1,h3.title1 {
     font-size: 1.7em;
     color: #629aa9;
     margin-bottom: 0.8em;
+    border-radius: 5px;
 }
 .bs-example5{
    background:#fff;
@@ -1720,7 +1721,7 @@ form.search-form {
 .login-top  h4  a:hover{
     color: #555;
 }
-.login-page input[type="email"], .login-page input[type="password"] {
+.login-page input[type="email"], .login-page input[type="password"], .login-page input[type="text"]  {
     font-size: 1em;
     padding: 14px 15px 14px 37px;
     width: 100%;
@@ -2062,13 +2063,14 @@ p.creating {
     margin-top: 1em;
 }
 .signup-page input[type="text"],.signup-page input[type="email"],.signup-page input[type="password"]{
-	outline:none;
-	border: 1px solid #D0D0D0;
+	  outline:none;
+  	border: 1px solid #D0D0D0;
     background: none;
     font-size: 15px;
     padding: 14px 15px 14px 37px;
-	width:100%;
-    margin: 0em 0 1.5em 0;
+	  width:100%;
+    margin: 1em 0 1.5em 0;
+    border-radius: 5px;
 }
 .signup-page input[type="email"]{
     background: url(../images/mail.png)no-repeat 8px 16px #fff;
@@ -2128,7 +2130,8 @@ p.creating {
 	-moz-transition: 0.5s all;
 	-ms-transition: 0.5s all;
 	-o-transition: 0.5s all;
-	-ms-transition: 0.5s all;
+  -ms-transition: 0.5s all;
+  border-radius: 5px;
 }
 .sub_home input[type="submit"]:hover {
     background-color: #337ab7;
@@ -7278,7 +7281,7 @@ h4.asd label {
 		border-bottom: 8px solid #4b7884;
 		font-size: 1.4em;
 	}
-	.login-page input[type="email"], .login-page input[type="password"],.signup-page input[type="text"], .signup-page input[type="email"], .signup-page input[type="password"]{
+	.login-page input[type="email"], .login-page input[type="password"], .signup-page input[type="text"], .signup-page input[type="email"], .signup-page input[type="password"]{
 		font-size: .9em;
 		padding: 12px 15px 12px 37px;
 	}
@@ -8484,4 +8487,12 @@ td.set-left{
 td.invert-image img {
   height: 40pt;
   margin: 0 auto;
+}
+.custom-alert{
+  border-radius: 5px;
+}
+.custom-h1{
+  text-align: center;
+  margin: 2em 0 0 5em;
+  color: #06bb57
 }

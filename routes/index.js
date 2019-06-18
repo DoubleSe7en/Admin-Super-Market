@@ -15,12 +15,16 @@ var orderManager_controller = require('../controllers/orderManagerController');
 
 var statistic_controller = require('../controllers/statisticController');
 
-
+const { forwardAuthenticated } = require('../config/auth');
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', forwardAuthenticated,function(req, res, next) {
+  if (req.isAuthenticated()) {
+    res.render('index', { title: 'Trang chủ'});
+  }
+  else {
+    res.render('admin/login', { title: 'Đăng nhập' });
+  }
 });
-
 
 /* GET user page. */
 router.get('/login', login_controller.login_page);
@@ -43,51 +47,5 @@ router.get('/orderManager', orderManager_controller.orderManager_page);
 /* GET statistic page. */
 router.get('/statistic', statistic_controller.statistic_page);
 
-/*
-router.get('/accounts', function(req, res, next) {
-  res.render('accounts', { title: 'Express' });
-});
 
-router.get('/orders', function(req, res, next) {
-  res.render('orders', { title: 'Express' });
-});
-
-router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Express' });
-});
-
-router.get('/register', function(req, res, next) {
-  res.render('register', { title: 'Express' });
-});
-
-router.get('/forgotPassword', function(req, res, next) {
-  res.render('forgotPassword', { title: 'Express' });
-});
-router.get('/myAccount', function(req, res, next) {
-  res.render('myAccount', { title: 'Express' });
-});
-
-router.get('/changePassword', function(req, res, next) {
-  res.render('changePassword', { title: 'Express' });
-});
-
-router.get('/products', function(req, res, next) {
-  res.render('products', { title: 'Express' });
-});
-
-router.get('/statistics', function(req, res, next) {
-  res.render('statistics', { title: 'Express' });
-});
-
-router.get('/addProduct', function(req, res, next) {
-  res.render('addProduct', { title: 'Express' });
-});
-
-router.get('/detailProduct', function(req, res, next) {
-  res.render('detailProduct', { title: 'Express' });
-});
-
-router.get('/detailAccount', function(req, res, next) {
-  res.render('detailAccount', { title: 'Express' });
-});*/
 module.exports = router;

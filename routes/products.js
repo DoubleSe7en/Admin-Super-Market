@@ -1,19 +1,30 @@
 var express = require('express');
 var router = express.Router();
-
 var products_controller = require('../controllers/products/productController');
 
 
-//Get list product
-router.get('/products', products_controller.listProduct)
+//Danh sách sản phẩm
+router.get('/listProduct', products_controller.listProduct);
 
-//Get detail product
-router.get('/products/:id', products_controller.detailProduct)
+//Chi tiết
+router.get('/:id', products_controller.detailProduct);
 
-//Get add product page
-router.get('/addProduct', products_controller.addProduct)
+//Hiện trang thêm
+router.get('/addProduct', products_controller.addProductPage);
+
+//Xử lý thêm
+router.post('/add_Product', products_controller.addProductProcess);
 
 
 
+//Chỉnh sửa
+router.post('/editProduct/:id', products_controller.editProduct);
+
+
+
+
+
+//Xóa
+router.post('/delete_product/:id', products_controller.deleteProduct);
 
 module.exports = router;

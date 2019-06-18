@@ -1,0 +1,92 @@
+<!-- main content start-->
+<div id="page-wrapper">
+    <div class="main-page signup-page">
+        <h2 class="title1">Đăng ký</h2>
+        <div class="sign-up-row widget-shadow">
+            <form action="/admin/register" method="post">
+                <div id="error-message1" class="custom-alert alert-danger" aria-hidden="true" role="alert"></div>
+                <div class="sign-u">
+                    <input id="email" type="email" placeholder="Email" name="email" required="">
+                    <div class="clearfix"> </div>
+                </div>
+                <div id="error-message2" class="custom-alert alert-danger" aria-hidden="true" role="alert"></div>
+                <div class="sign-u">
+                    <input id="username" type="text" placeholder="Tài khoản" name="username" required="">
+                    <div class="clearfix"> </div>
+                </div>
+                <div id="error-message0" class="custom-alert alert-danger" aria-hidden="true" role="alert"></div>
+                <div class="sign-u">
+                    <input id="password" type="password" placeholder="Mật khẩu" name="password" required="">
+                    <div class="clearfix"> </div>
+                </div>
+                <div id="error-message3" class="custom-alert alert-danger" aria-hidden="true" role="alert"></div>
+                <div class="sign-u">
+                    <input id="password2" type="password" placeholder="Xác nhận mật khẩu" name="password2" required="">
+                </div>
+                <div class="clearfix"> </div>
+                <div class="sub_home">
+                    <input type="submit" value="Đăng ký">
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="registration">
+                    Đã có tài khoản.
+                    <a class="" href="/admin/login">
+                        Đăng nhập
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--footer-->
+{{#extend "scripts"}}
+<script>
+    $('#email').change(function () {
+        console.log("keyyyy");
+        const email = document.getElementById("email");
+        $.getJSON('../../api/adminAPI/checkEmail?email=' + $('#email').val(), function (data) {
+            if (!data) {
+                $('#error-message1').html('Email đã tồn tại');
+                $("#register").attr("disabled", true);
+                console.log(data);
+            }
+            else {
+                $('#error-message1').html('');
+                $("#register").attr("disabled", false);
+            }
+        });
+    });
+</script>
+<script>
+    $('#username').change(function () {
+        console.log("keyyyy");
+        const username = document.getElementById("username");
+        $.getJSON('../../api/adminAPI/checkUsername?username=' + $('#username').val(), function (data) {
+            if (!data) {
+                $('#error-message2').html('Tài khoản đã tồn tại');
+                $("#register").attr("disabled", true);
+                console.log(data);
+            }
+            else {
+                $('#error-message2').html('');
+                $("#register").attr("disabled", false);
+            }
+        });
+    });
+</script>
+<script>
+    var password = document.getElementById("password");
+    var password2 = document.getElementById("password2");
+    function validatePassword() {
+        if (password.value != password2.value) {
+            $('#error-message3').html('Xác nhận mật khẩu không đúng');
+            $("#register").attr("disabled", true);
+        } else {
+            $('#error-message3').html('');
+            $("#register").attr("disabled", false);
+        }
+    }
+    password.change = validatePassword;
+    password2.onchange = validatePassword;
+</script>
+{{/extend}}

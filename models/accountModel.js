@@ -8,7 +8,7 @@ var account = new Schema({
   email: String,
   username: String,
   password: String,
-  dateCreate: String,
+  dateCreate: Date,
   power: String
 },{collection: 'accounts'});
 

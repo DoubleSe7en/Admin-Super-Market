@@ -1,8 +1,32 @@
 const product = require('../../models/productModel');
 
-//View list product
-exports.listProduct = function(req, res) {
-    product.find({}).exec((err,Product)=>{
+
+
+
+//Trang thêm
+exports.addProductPage = async(req, res) => {
+    res.render('productManager/addProduct', {title:'Thêm sản phẩm'})
+};
+
+//Xử lý thêm
+exports.addProductProcess = async(req, res) => {
+    product.addProduct(req, res);
+};
+
+//Sửa 
+exports.editProduct = async(req, res) => {
+    product.editProduct(req, res);
+};
+
+//Xóa 
+exports.deleteProduct = async(req, res) => {
+    product.deleteProduct(req, res);
+};
+
+
+//Danh sách
+exports.listProduct = async(req, res) => {
+    product.list.find({}).exec((err,Product)=>{
         if(err){
             console.log('Thất bại');
         }
@@ -10,12 +34,11 @@ exports.listProduct = function(req, res) {
             res.render('productManager/products', {title: 'Danh sách sản phẩm', Product});
         }
     })
-
 };
 
-//View single product
-exports.detailProduct = function (req, res) {
-    product.findById(req.params.id).then(productFound =>{
+//Chi tiết
+exports.detailProduct = async (req, res) => {
+    product.list.findById(req.params.id).then(productFound =>{
         if (!productFound)
         {
             res.send('Thất bại');
@@ -24,9 +47,6 @@ exports.detailProduct = function (req, res) {
     })
 }
 
-//View page add product
-exports.addProduct = function(req, res) {
-    res.render('productManager/addProduct', {title:'Thêm sản phẩm'})
-};
+
 
 
